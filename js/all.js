@@ -1,3 +1,4 @@
+/* global axios */
 const url = 'https://hexschool.github.io/js-filter-data/data.json';
 
 let data = null;
@@ -25,16 +26,13 @@ function renderData(ary) {
   table.innerHTML = str;
 }
 
-function getData() {
-  axios.get(url)
-    .then((res) => {
-      if (res.status === 200) {
-        data = res.data.filter((a) => a.作物名稱);
-        renderData(data);
-      }
-    });
-}
-getData();
+axios.get(url)
+  .then((res) => {
+    if (res.status === 200) {
+      data = res.data.filter((a) => a.作物名稱);
+      renderData(data);
+    }
+  });
 
 function filterCategory(e) {
   if (e.target.nodeName === 'BUTTON') {
